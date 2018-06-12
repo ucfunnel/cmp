@@ -44,8 +44,8 @@ export default class VendorList extends Component {
 				</div>
 				<div class={detailsStyle.description}>
 					<SummaryLabel localizeKey='description'>
-					We and select companies may access and use your information for the below purposes. You may
-					customize your choices below or continue using our site if you're OK with the purposes.
+					We and selected vendors may access and use your information for the below purposes. 
+					You may customise your choices below or continue using our site if you agree with those purposes.
 					</SummaryLabel>
 				</div>
 				<div class={style.purposeItems}>
@@ -63,8 +63,7 @@ export default class VendorList extends Component {
 				</div>
 				<div class={detailsStyle.description}>
 					<SummaryLabel localizeKey='who.description'>
-						We and pre-selected companies will use your information. You can see each company in
-						the links above or
+						We and pre-selected vendors will use your information. You can see each vendor in the links above or
 					</SummaryLabel>&nbsp;
 					<a onClick={onVendorListClick}><SummaryLabel localizeKey='who.link'>see the complete list here.</SummaryLabel></a>
 				</div>
