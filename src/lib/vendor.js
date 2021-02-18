@@ -1,16 +1,16 @@
-import Promise from 'promise-polyfill';
-import 'whatwg-fetch';
-import config from './config';
-import log from './log';
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
+import config from "./config";
+import log from "./log";
 
-const PUB_VENDOR_LOCATION = '/.well-known/pubvendors.json';
+const PUB_VENDOR_LOCATION = "http://cdn.aralego.net/cmp/pubvendors.json";
 
 /**
  * Fetch the pubvendors.json from the local domain
  */
 function fetchPubVendorList() {
 	return fetch(PUB_VENDOR_LOCATION)
-		.then(res => res.json())
+		.then((res) => res.json())
 		.catch(() => {});
 }
 
@@ -18,14 +18,17 @@ function fetchPubVendorList() {
  * Fetch the global vendor list if the location is configured
  */
 function fetchGlobalVendorList() {
-	const {globalVendorListLocation} = config;
+	const { globalVendorListLocation } = config;
 
-	return (globalVendorListLocation ?
-		fetch(globalVendorListLocation) :
-		Promise.reject('Missing globalVendorListLocation'))
-		.then(res => res.json())
+	return (globalVendorListLocation
+		? fetch(globalVendorListLocation)
+		: Promise.reject("Missing globalVendorListLocation")
+	)
+		.then((res) => res.json())
 		.catch(() => {
-			log.error(`Failed to load global vendor list from: ${globalVendorListLocation}`);
+			log.error(
+				`Failed to load global vendor list from: ${globalVendorListLocation}`
+			);
 		});
 }
 
@@ -36,18 +39,17 @@ function fetchPurposeList() {
 
 	return fetch(config.customPurposeListLocation, {
 		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
 	})
-		.then(res => res.json())
-		.catch(err => {
-			log.error(`Failed to load custom purposes list from ${config.customPurposeListLocation}`, err);
+		.then((res) => res.json())
+		.catch((err) => {
+			log.error(
+				`Failed to load custom purposes list from ${config.customPurposeListLocation}`,
+				err
+			);
 		});
 }
 
-export {
-	fetchGlobalVendorList,
-	fetchPubVendorList,
-	fetchPurposeList
-};
+export { fetchGlobalVendorList, fetchPubVendorList, fetchPurposeList };

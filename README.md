@@ -1,12 +1,13 @@
 [![Build Status](https://travis-ci.org/appnexus/cmp.svg?branch=master)](https://travis-ci.org/appnexus/cmp)
 
 # ucfunnel CMP
+
 CMP is a tool for publishers to engage users of their properties and gather & store end user consent.
 
 ### Installation
 
 ```sh
-git clone https://github.com/appnexus/cmp.git
+git clone https://github.com/ucfunnel/cmp.git
 cd cmp
 yarn install
 ```
@@ -18,8 +19,9 @@ yarn build
 ```
 
 This produces a production build of the `cmp` script and the docs application:
-+ `./build/cmp.bundle.js` - CMP script to include on your site
-+ `./build/docs/` - Application hosting the documentation
+
+- `./build/cmp.bundle.js` - CMP script to include on your site
+- `./build/docs/` - Application hosting the documentation
 
 ## Documentation
 
@@ -34,7 +36,9 @@ The documentation can be viewed at:
 `http://localhost:5000/docs/`
 
 ## Development
+
 You can start a development server that will monitor changes to all CMP and docs files with:
+
 ```sh
 yarn dev
 ```
