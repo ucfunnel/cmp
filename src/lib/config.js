@@ -1,16 +1,16 @@
-import log from './log';
+import log from "./log";
 
 const defaultConfig = {
-	customPurposeListLocation: './purposes.json',
-	globalVendorListLocation: 'https://vendorlist.consensu.org/vendorlist.json',
-	globalConsentLocation: './portal.html',
+	customPurposeListLocation: "./purposes.json",
+	globalVendorListLocation: "http://cdn.aralego.net/cmp/vendorlist.json",
+	globalConsentLocation: "./portal.html",
 	storeConsentGlobally: false,
 	storePublisherData: false,
 	logging: false,
 	localization: {},
 	forceLocale: null,
 	gdprApplies: true,
-	allowedVendorIds: null
+	allowedVendorIds: null,
 };
 
 class Config {
@@ -19,26 +19,29 @@ class Config {
 	}
 
 	update = (updates) => {
-		if (updates && typeof updates === 'object') {
+		if (updates && typeof updates === "object") {
 			const validKeys = Object.keys(defaultConfig);
-			const { validUpdates, invalidKeys } = Object.keys(updates).reduce((acc, key) => {
-				if (validKeys.indexOf(key) > -1) {
-					acc.validUpdates = {
-						...acc.validUpdates,
-						[key]: updates[key]
-					};
-				}
-				else {
-					acc.invalidKeys.push(key);
-				}
-				return acc;
-			}, { validUpdates: {}, invalidKeys: [] });
+			const { validUpdates, invalidKeys } = Object.keys(updates).reduce(
+				(acc, key) => {
+					if (validKeys.indexOf(key) > -1) {
+						acc.validUpdates = {
+							...acc.validUpdates,
+							[key]: updates[key],
+						};
+					} else {
+						acc.invalidKeys.push(key);
+					}
+					return acc;
+				},
+				{ validUpdates: {}, invalidKeys: [] }
+			);
 
 			Object.assign(this, validUpdates);
 			if (invalidKeys.length) {
-				log.warn(`Invalid CMP config values not applied: ${invalidKeys.join(', ')}`);
+				log.warn(
+					`Invalid CMP config values not applied: ${invalidKeys.join(", ")}`
+				);
 			}
-
 		}
 	};
 }
